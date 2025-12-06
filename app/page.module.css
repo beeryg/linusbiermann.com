@@ -1,18 +1,149 @@
 .container {
   width: 100%;
+  min-height: 100vh;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 2rem;
   position: relative;
   z-index: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+/* Desktop spacing adjustments */
+@media (min-width: 769px) {
+  .container {
+    align-items: flex-start;
+    padding: 0.5rem 0.25rem;
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+  }
+  
+  .content {
+    padding: 0.5rem 0.5rem 0.25rem;
+    max-height: calc(100vh - 1rem);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+  
+  .title {
+    margin-top: 0;
+    margin-bottom: 0.375rem;
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+    line-height: 1.1;
+    padding-top: 0;
+  }
+  
+  .giftBox {
+    padding: 0.875rem 0.75rem;
+    margin: 0.375rem 0;
+  }
+  
+  .giftTitle {
+    margin-bottom: 0.375rem;
+    font-size: 0.95rem;
+  }
+  
+  .gifContainer {
+    margin: 0.25rem 0;
+  }
+  
+  .gif {
+    max-height: 100px;
+  }
+  
+  .domain {
+    margin: 0.25rem 0;
+  }
+  
+  .domainName {
+    font-size: 1.35rem;
+    padding: 0.4rem 0.875rem;
+  }
+  
+  .giftMessage {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .footer {
+    margin-top: 0.375rem;
+    padding-bottom: 0;
+    font-size: 0.7rem;
+  }
+}
+
+/* Large screens - even more compact */
+@media (min-width: 1200px) {
+  .container {
+    padding: 0.5rem 0.25rem;
+    align-items: flex-start;
+  }
+  
+  .content {
+    padding: 0.5rem 0.5rem 0.25rem;
+    max-height: calc(100vh - 1rem);
+    justify-content: flex-start;
+  }
+  
+  .title {
+    margin-bottom: 0.375rem;
+    font-size: 1.75rem;
+    padding-top: 0;
+  }
+  
+  .giftBox {
+    padding: 0.875rem 0.75rem;
+    margin: 0.375rem 0;
+  }
+  
+  .giftTitle {
+    margin-bottom: 0.375rem;
+    font-size: 0.95rem;
+  }
+  
+  .gifContainer {
+    margin: 0.25rem 0;
+  }
+  
+  .gif {
+    max-height: 100px;
+  }
+  
+  .domain {
+    margin: 0.25rem 0;
+  }
+  
+  .domainName {
+    font-size: 1.35rem;
+    padding: 0.4rem 0.875rem;
+  }
+  
+  .giftMessage {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .footer {
+    margin-top: 0.375rem;
+    font-size: 0.7rem;
+  }
 }
 
 .content {
   text-align: center;
   max-width: 800px;
+  width: 100%;
   animation: fadeIn 1s ease-in;
+  padding: 3rem 1rem 2rem;
+  margin: auto;
 }
 
 @keyframes fadeIn {
@@ -27,15 +158,20 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 8vw, 4rem);
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem 0;
+  padding-top: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #d4d4d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 3s ease-in-out infinite;
+  line-height: 1.2;
+  word-wrap: break-word;
+  letter-spacing: -0.02em;
 }
 
 @keyframes shimmer {
@@ -47,87 +183,302 @@
   }
 }
 
+.gifContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.gif {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 1s ease-in;
+  object-fit: contain;
+}
+
 .message {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   margin-bottom: 3rem;
-  line-height: 1.6;
-  color: #e0e0e0;
+  line-height: 1.7;
+  color: #d1d5db;
+  font-weight: 300;
+  letter-spacing: 0.01em;
 }
 
 .giftBox {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 3rem 2rem;
   margin: 2rem 0;
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .giftTitle {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 5vw, 2rem);
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #ffd700;
+  color: #f9fafb;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
 }
 
 .domain {
-  margin: 2rem 0;
+  margin: 1.5rem 0;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.lotteryTicket {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 600px;
+  min-height: 80px;
+}
+
+.lotteryTicket .domainName {
+  position: relative;
 }
 
 .domainName {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  color: #4ecdc4;
-  text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
-  letter-spacing: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 6vw, 3.5rem);
+  font-weight: 600;
+  color: #f3f4f6;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.05em;
   display: inline-block;
-  padding: 1rem 2rem;
-  background: rgba(78, 205, 196, 0.1);
-  border-radius: 10px;
-  border: 2px solid rgba(78, 205, 196, 0.3);
-  animation: pulse 2s ease-in-out infinite;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7);
+/* Desktop: Keep domain name on one line and reduce font size */
+@media (min-width: 769px) {
+  .domainName {
+    white-space: nowrap;
+    word-break: normal;
+    hyphens: none;
+    width: auto;
+    display: inline-block;
+    min-width: fit-content;
+    font-size: 2rem;
+    padding: 0.875rem 1.5rem;
   }
-  50% {
-    box-shadow: 0 0 0 20px rgba(78, 205, 196, 0);
+  
+  .lotteryTicket {
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
   }
+  
+  .domain {
+    width: auto;
+    display: inline-block;
+  }
+}
+
+.scratchContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.scratchCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  touch-action: none;
 }
 
 .giftMessage {
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-size: clamp(1rem, 4vw, 1.6rem);
   margin-top: 1.5rem;
-  color: #ffd700;
-  font-weight: 500;
+  color: #e5e7eb;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
 }
 
 .footer {
-  margin-top: 3rem;
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  color: #b0b0b0;
+  margin-top: 2rem;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  color: #9ca3af;
+  padding-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
+/* Mobile optimizations */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  .content {
+    padding: 0 0.5rem;
+  }
+  
+  .title {
+    margin-bottom: 1rem;
   }
   
   .giftBox {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
+    margin: 1rem 0;
+    border-radius: 15px;
+  }
+  
+  .gifContainer {
+    margin: 1rem 0;
+  }
+  
+  .gif {
+    max-height: 250px;
+    border-radius: 10px;
+  }
+  
+  .giftTitle {
+    margin-bottom: 1rem;
+  }
+  
+  .domain {
+    margin: 1rem 0;
+  }
+  
+  .domainName {
+    padding: 0.75rem 1rem;
+    font-size: clamp(1.3rem, 7vw, 2rem);
+  }
+  
+  .lotteryTicket {
+    max-width: 100%;
+    min-height: auto;
+    display: block;
+    height: auto;
+  }
+  
+  .lotteryTicket .domainName {
+    display: block;
+    width: 100%;
+  }
+  
+  .scratchContainer {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .giftMessage {
+    margin-top: 1rem;
+  }
+  
+  .footer {
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .content {
+    padding: 0 0.25rem;
+  }
+  
+  .giftBox {
+    padding: 1.25rem 0.75rem;
+    margin: 0.75rem 0;
+  }
+  
+  .gif {
+    max-height: 200px;
+  }
+  
+  .domainName {
+    padding: 0.5rem 0.75rem;
+    font-size: clamp(1.1rem, 8vw, 1.8rem);
+    letter-spacing: 0.5px;
+  }
+  
+  .lotteryTicket {
+    max-width: 100%;
+    min-height: auto;
+    display: block;
+    height: auto;
+  }
+  
+  .lotteryTicket .domainName {
+    display: block;
+    width: 100%;
+  }
+  
+  .scratchContainer {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .title {
+    font-size: clamp(1.5rem, 10vw, 2.5rem);
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .gif {
+    max-height: 180px;
+  }
+  
+  .giftBox {
+    padding: 1.25rem 1rem;
+    margin: 0.75rem 0;
   }
 }
 

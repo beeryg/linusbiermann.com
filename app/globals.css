@@ -6,11 +6,22 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 769px) {
+  html, body {
+    overflow: hidden;
+  }
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,6 +33,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   position: relative;
+  letter-spacing: -0.01em;
 }
 
 /* Snowflakes animation */
@@ -40,24 +52,17 @@ body {
   position: absolute;
   top: -10px;
   color: #fff;
-  font-size: 1em;
+  font-size: clamp(0.8em, 2vw, 1em);
   animation: snowflake 10s linear infinite;
   user-select: none;
+  pointer-events: none;
+  will-change: transform;
 }
 
-/* Twinkling stars */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
+/* Reduce animations on mobile for better performance */
+@media (max-width: 768px) {
+  .snowflake {
+    font-size: 0.9em;
   }
-  50% {
-    opacity: 1;
-  }
-}
-
-.star {
-  position: absolute;
-  color: #fff;
-  animation: twinkle 2s ease-in-out infinite;
 }
 
